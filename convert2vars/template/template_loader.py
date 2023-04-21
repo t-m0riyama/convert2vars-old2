@@ -33,7 +33,6 @@ class TemplateLoader(object):
                 logger, u"テンプレートファイルの読み込みに失敗しました({0})".format(template_file))
             Logging.error(logger, u"例外クラス: {0}".format(type(e)))
             Logging.error(logger, u"ARGS: {0}".format(e.args))
-            Logging.error(logger, u"例外詳細: {0}".format(e.message))
             return None
 
         Logging.debug(logger, "TemplateLoader.{0}: end".format(
