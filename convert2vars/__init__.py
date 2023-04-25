@@ -4,6 +4,8 @@
 from convert2vars.app.app_impl import AppImpl
 import click
 import pathlib
+import os
+from dotenv import load_dotenv
 
 base_path = (pathlib.Path(__file__)).parent.parent
 
@@ -117,4 +119,5 @@ def convert(
 
 
 def main():
+    load_dotenv(os.environ.get("DOTENV_FILE"))
     cli(obj={})
