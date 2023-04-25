@@ -4,8 +4,6 @@
 from convert2vars.app.app_impl import AppImpl
 import click
 import pathlib
-import os
-from dotenv import load_dotenv
 
 base_path = (pathlib.Path(__file__)).parent.parent
 
@@ -102,10 +100,17 @@ def cli(ctx, config_file, debug):
     default='',
     show_default=True,
     help=u'出力する際に利用するテンプレートのファイル名を指定する')
+@click.option(
+    '--dotenv-file',
+    type=str,
+    metavar='DOTENV_FILE',
+    default='',
+    show_default=True,
+    help=u'環境変数として利用する、dotenvのファイル名を指定する')
 @click.pass_context
 def convert(
         ctx, vars, use_environment, input_file, output_file,
-        input_format, section, output_format, template_file):
+        input_format, section, output_format, template_file, dotenv_file):
 
     ctx.obj['vars'] = vars
     ctx.obj['use_environment'] = use_environment
@@ -115,9 +120,9 @@ def convert(
     ctx.obj['section'] = section
     ctx.obj['output_format'] = output_format
     ctx.obj['template_file'] = template_file
+    ctx.obj['dotenv_file'] = dotenv_file
     AppImpl.app_convert(ctx)
 
 
 def main():
-    load_dotenv(os.environ.get("DOTENV_FILE"))
     cli(obj={})

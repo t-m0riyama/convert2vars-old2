@@ -4,6 +4,7 @@
 import os
 import sys
 
+from dotenv import load_dotenv
 from convert2vars.app.constants import Constants as cs
 from convert2vars.app.command.command_convert import CommandConvert
 from convert2vars.util.config_util import ConfigUtil
@@ -32,6 +33,9 @@ class AppImpl(object):
         else:
             logger = Logging.get_logger(
                 {}, ctx.obj['output_file'], ctx.obj['debug'], __name__)
+
+        if ctx.obj['dotenv_file'] != "":
+            load_dotenv(ctx.obj['dotenv_file'])
 
         return config, logger
 
