@@ -8,6 +8,7 @@ setuptools.setup(
     version="0.0.1",
     install_requires=[
         "click",
+        "python-dotenv",
         "iniconfig",
         "Jinja2",
         "PyYAML",
