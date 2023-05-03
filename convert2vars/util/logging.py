@@ -8,13 +8,11 @@ import logging.config
 from logging import (CRITICAL, DEBUG, ERROR, INFO, WARN, Formatter,
                      StreamHandler, getLogger)
 
-__version__ = "1.0"
-
 
 class Logging(object):
     @classmethod
     def get_logger(cls, config, log_filename, enableDebug, logger_name):
-        # configを指定されていれば、設定をロード
+        # Load configuration if config variable is specified
         if config:
             logging.config.dictConfig(config)
             logger = getLogger(logger_name)
@@ -33,7 +31,7 @@ class Logging(object):
                 )
             logger = getLogger('root')
 
-        # debug出力が指定された場合は、ログレベルをDEBUGにセット
+        # If debug output is enabled, set log level to DEBUG
         if enableDebug:
             logger.setLevel(logging.DEBUG)
         return logger

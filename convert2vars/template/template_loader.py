@@ -8,8 +8,6 @@ from jinja2 import Environment, FileSystemLoader
 
 from convert2vars.util.logging import Logging
 
-__version__ = "1.0"
-
 
 class TemplateLoader(object):
     @classmethod
@@ -30,8 +28,8 @@ class TemplateLoader(object):
                 sys._getframe().f_code.co_name, template_file))
         except Exception as e:
             Logging.error(
-                logger, u"テンプレートファイルの読み込みに失敗しました({0})".format(template_file))
-            Logging.error(logger, u"例外クラス: {0}".format(type(e)))
+                logger, "Failed to load template file({0})".format(template_file))
+            Logging.error(logger, u"Exception Class: {0}".format(type(e)))
             Logging.error(logger, u"ARGS: {0}".format(e.args))
             return None
 

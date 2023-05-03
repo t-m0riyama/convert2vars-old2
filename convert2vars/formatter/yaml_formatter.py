@@ -7,8 +7,6 @@ import yaml
 from collections import OrderedDict
 from convert2vars.util.logging import Logging
 
-__version__ = "1.0"
-
 
 class YamlFormatter(object):
     @classmethod
@@ -16,7 +14,7 @@ class YamlFormatter(object):
         Logging.debug(logger, "YamlFormatter.{0}: start".format(
             sys._getframe().f_code.co_name))
 
-        # PyYAMLのOrderedDict対応
+        # OrderedDict support in PyYAML
         def _represent_odict(dumper, instance):
             return dumper.represent_mapping('tag:yaml.org,2002:map', instance.items())
 

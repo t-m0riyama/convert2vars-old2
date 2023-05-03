@@ -6,8 +6,6 @@ import json
 
 from convert2vars.util.logging import Logging
 
-__version__ = "1.0"
-
 
 class JsonFormatter(object):
     @classmethod

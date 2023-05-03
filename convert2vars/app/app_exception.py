@@ -3,8 +3,6 @@
 
 from convert2vars.util.logging import Logging
 
-__version__ = "1.0"
-
 
 class GenericAppError(Exception):
     def __init__(self, status_code):
@@ -17,28 +15,28 @@ class GenericAppError(Exception):
 class TemplateLoadError(GenericAppError):
     def __init__(self, status_code):
         super(TemplateLoadError, self).__init__(status_code)
-        self.message = "テンプレートファイルのロードに失敗"
+        self.message = 'Failed to load template file'
 
 
 class TemplateRenderError(GenericAppError):
     def __init__(self, status_code):
         super(TemplateRenderError, self).__init__(status_code)
-        self.message = "テンプレートのレンダリング処理に失敗"
+        self.message = 'Template rendering process fails'
 
 
 class ParameterLoadError(GenericAppError):
     def __init__(self, status_code):
         super(ParameterLoadError, self).__init__(status_code)
-        self.message = "テンプレートファイルのロードに失敗"
+        self.message = 'Failed to load template file'
 
 
 class ParameterFileWriteError(GenericAppError):
     def __init__(self, status_code):
         super(ParameterFileWriteError, self).__init__(status_code)
-        self.message = "パラメータファイルの書き込み処理に失敗"
+        self.message = 'Write process of parameter file failed'
 
 
 class ConvertedFileExportError(GenericAppError):
     def __init__(self, status_code):
         super(ConvertedFileExportError, self).__init__(status_code)
-        self.message = "変換済みファイルの出力に失敗"
+        self.message = 'Failed to output converted file'

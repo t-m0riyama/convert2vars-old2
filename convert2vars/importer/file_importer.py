@@ -6,9 +6,6 @@ import sys
 from convert2vars.util.logging import Logging
 
 
-__version__ = "1.0"
-
-
 class FileImporter(object):
     @classmethod
     def import_file(cls, app_config, file_path, logger):
@@ -20,7 +17,7 @@ class FileImporter(object):
                 file_data = f.read()
         except IOError:
             Logging.error(
-                logger, u"パラメータファイルの読み込みに失敗しました({0})".format(file_path))
+                logger, u"Failed to read parameter file({0})".format(file_path))
             return None
 
         Logging.debug(logger, "FileImporter.{0}: end".format(

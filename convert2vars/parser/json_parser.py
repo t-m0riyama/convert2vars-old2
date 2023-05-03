@@ -7,8 +7,6 @@ import json
 from convert2vars.util.logging import Logging
 from convert2vars.parser.parse_helper import ParseHelper
 
-__version__ = "1.0"
-
 
 class JsonParser(object):
     @classmethod
@@ -21,8 +19,8 @@ class JsonParser(object):
             parameters = json.loads(content_data)
         except Exception as e:
             Logging.error(
-                logger, u"パラメータファイルのパースに失敗しました({0})".format(content_data))
-            Logging.error(logger, u"例外クラス: {0}".format(type(e)))
+                logger, u"Failed to parse parameter file({0})".format(content_data))
+            Logging.error(logger, u"Exception Class: {0}".format(type(e)))
             Logging.error(logger, u"ARGS: {0}".format(e.args))
             return None
 

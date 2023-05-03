@@ -8,8 +8,6 @@ from convert2vars.app.app_helper import AppHelper
 from convert2vars.app.constants import Constants as cs
 from convert2vars.util.logging import Logging
 
-__version__ = "1.0"
-
 
 class CommandConvert(object):
     @classmethod
@@ -30,19 +28,26 @@ class CommandConvert(object):
         Logging.debug(logger, "CommandConvert.{0}: start".format(
             sys._getframe().f_code.co_name))
 
-        # パラメータファイル、環境変数、カスタムパラメータからパラメータリストを作成
+        # Create parameter lists from parameter files, environment variables, and custom parameters
         parameters_parsed = AppHelper.generate_parameters(
             config['runtime'], logger)
 
         Logging.debug(logger, parameters_parsed)
 
-        # 指定したフォーマットに変換
-        if config['runtime']['template_file'] != '':
-            converted_rendered = AppHelper.generate_converted_with_template(
-                config['runtime'], parameters_parsed, logger)
-        else:
-            converted_rendered = AppHelper.generate_converted_without_template(
-                config['runtime'], parameters_parsed, logger)
+        # Converts to specified format
+        try:
+            if config['runtime']['template_file'] != '':
+                converted_rendered = AppHelper.generate_converted_with_template(
+                    config['runtime'], parameters_parsed, logger)
+            else:
+                converted_rendered = AppHelper.generate_converted_without_template(
+                    config['runtime'], parameters_parsed, logger)
+        except TemplateLoadError:
+            Logging.error(logger, 'Failed to load template file')
+            return cs.EXIT_ERR_LOAD_TEMPLATE
+        except TemplateRenderError:
+            Logging.error(logger, 'Template rendering process failed')
+            return cs.EXIT_ERR_RENDER_TEMPLATE
 
         Logging.info(logger, converted_rendered)
 

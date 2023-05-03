@@ -11,7 +11,7 @@ __appname__ = 'convert2vars'
 __version__ = '1.0.0'
 
 
-@click.group(help=u'テンプレートを読み込み、環境変数や任意の変数の値を埋め込んで出力する')
+@click.group(help='Load a template, embed the value of a variable, and output it.')
 @click.option(
     '--config-file',
     '-c',
@@ -19,7 +19,7 @@ __version__ = '1.0.0'
     metavar='CONFIG_FILE',
     default='',
     show_default=True,
-    help=u'設定ファイルを指定する')
+    help='Specify a configuration file')
 @click.option(
     '--debug/--no-debug',
     '-d',
@@ -27,7 +27,7 @@ __version__ = '1.0.0'
     metavar='DEBUG',
     default=False,
     show_default=True,
-    help=u'デバッグ出力を有効にする(標準出力のみ適用)')
+    help='Enable debug output (applies to standard output only)')
 @click.pass_context
 def cli(ctx, config_file, debug):
     ctx.obj['config_file'] = config_file
@@ -35,7 +35,7 @@ def cli(ctx, config_file, debug):
     ctx.obj['base_path'] = base_path
 
 
-@cli.command(help=u'環境変数や任意の変数の値を埋め込んで出力する')
+@cli.command(help='Embed and output the values of environment variables and various variables')
 @click.option(
     '--vars',
     '-e',
@@ -43,7 +43,7 @@ def cli(ctx, config_file, debug):
     multiple=True,
     metavar='VARS',
     show_default=True,
-    help=u'変数とその値を指定する（ex. -e var1=X -e var2=y）')
+    help='Specify a variable and its value（ex. -e var1=X -e var2=y）')
 @click.option(
     '--use-environment',
     '-E',
@@ -51,7 +51,7 @@ def cli(ctx, config_file, debug):
     metavar='USE_ENVIRONMENT',
     default=False,
     show_default=True,
-    help=u'環境変数を入力とするかどうかを指定する')
+    help='Specify whether environment variables are input or not')
 @click.option(
     '--input-file',
     '-i',
@@ -59,7 +59,7 @@ def cli(ctx, config_file, debug):
     metavar='INPUT_FILE',
     default='',
     show_default=True,
-    help=u'パラメータファイル名を指定する')
+    help='Specify parameter file name')
 @click.option(
     '--output-file',
     '-o',
@@ -67,7 +67,7 @@ def cli(ctx, config_file, debug):
     metavar='OUTPUT_FILE',
     default='',
     show_default=True,
-    help=u'出力するファイル名を指定する（指定しない場合は、標準出力に出力する）')
+    help='Specify the name of the file to output (if not specified, output to standard output)')
 @click.option(
     '--input-format',
     '-F',
@@ -75,7 +75,7 @@ def cli(ctx, config_file, debug):
     # metavar='FORMAT',
     default=None,
     show_default=True,
-    help=u'パラメータファイルのフォーマットを指定する')
+    help='Specify the format of the parameter file')
 @click.option(
     '--section',
     '-S',
@@ -83,7 +83,7 @@ def cli(ctx, config_file, debug):
     metavar='PARAMETER_SECTION',
     default='DEFAULT',
     show_default=True,
-    help=u'パラメータファイルのセクション名を指定する')
+    help='Specify section name for parameter file (valid only for ini files)')
 @click.option(
     '--output-format',
     '-f',
@@ -91,7 +91,7 @@ def cli(ctx, config_file, debug):
     # metavar='FORMAT',
     default='json',
     show_default=True,
-    help=u'出力する際のフォーマットを指定する(テンプレートを利用しない場合のみ有効)')
+    help='Specify format for output (valid only if template is not used)')
 @click.option(
     '--template-file',
     '-t',
@@ -99,14 +99,14 @@ def cli(ctx, config_file, debug):
     metavar='TEMPLATE_FILE',
     default='',
     show_default=True,
-    help=u'出力する際に利用するテンプレートのファイル名を指定する')
+    help='Specify the file name of the template to be used for output')
 @click.option(
     '--dotenv-file',
     type=str,
     metavar='DOTENV_FILE',
     default='',
     show_default=True,
-    help=u'環境変数として利用する、dotenvのファイル名を指定する')
+    help='Specify the name of the dotenv file to be used as an environment variable')
 @click.pass_context
 def convert(
         ctx, vars, use_environment, input_file, output_file,

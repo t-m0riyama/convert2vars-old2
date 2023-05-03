@@ -3,8 +3,6 @@
 
 import yaml
 
-__version__ = "1.0"
-
 
 class ConfigUtil(object):
     @classmethod
