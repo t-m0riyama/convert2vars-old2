@@ -20,7 +20,7 @@ setuptools.setup(
     },
     author="t-m0riyama",
     author_email="mt52405@gmail.com",
-    description="small tool for convert to json, yaml, ansible vars",
+    description="A small tool for mutual conversion of json, yaml, including parameters.",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/t-m0riyama/convert2vars",
